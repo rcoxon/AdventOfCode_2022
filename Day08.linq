@@ -1,3 +1,5 @@
+<Query Kind="Program" />
+
 void Main()
 {
 	var input = File.ReadAllLines(@"c:\AdventOfCode\2022\Day08_1.txt");
@@ -39,8 +41,8 @@ void Main()
 
 		// Check visibility to the left
 		if (!trees.Exists(t => t.y == tree.y &&
-				       t.x < tree.x &&
-				       t.h >= tree.h))
+							   t.x < tree.x &&
+							   t.h >= tree.h))
 		{
 			tree.v = true;
 			continue;
@@ -48,8 +50,8 @@ void Main()
 
 		// Check visibility to the right
 		if (!trees.Exists(t => t.y == tree.y &&
-				       t.x > tree.x &&
-				       t.h >= tree.h))
+							   t.x > tree.x &&
+							   t.h >= tree.h))
 		{
 			tree.v = true;
 			continue;
@@ -57,8 +59,8 @@ void Main()
 
 		// Check visibility above
 		if (!trees.Exists(t => t.x == tree.x &&
-				       t.y < tree.y &&
-				       t.h >= tree.h))
+							   t.y < tree.y &&
+							   t.h >= tree.h))
 		{
 			tree.v = true;
 			continue;
@@ -66,8 +68,8 @@ void Main()
 
 		// Check visibility below
 		if (!trees.Exists(t => t.x == tree.x &&
-				       t.y > tree.y &&
-				       t.h >= tree.h))
+							   t.y > tree.y &&
+							   t.h >= tree.h))
 		{
 			tree.v = true;
 			continue;
@@ -76,7 +78,7 @@ void Main()
 	}
 
 	var count = trees.Where(t => t.v).Count();
-	Console.WriteLine($"Visible: {count}");
+	Console.WriteLine($"Part 1 Visible: {count}");
 
 	var scenicScoreMax = 0;
 	Console.WriteLine();
@@ -137,7 +139,7 @@ void Main()
 	}
 
 	Console.WriteLine();
-	Console.WriteLine($"Scenic Score Max: {scenicScoreMax}");
+	Console.WriteLine($"Part 2 Scenic Score Max: {scenicScoreMax}");
 }
 
 // You can define other methods, fields, classes and namespaces here
