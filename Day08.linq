@@ -39,8 +39,8 @@ void Main()
 
 		// Check visibility to the left
 		if (!trees.Exists(t => t.y == tree.y &&
-							   t.x < tree.x &&
-							   t.h >= tree.h))
+				       t.x < tree.x &&
+				       t.h >= tree.h))
 		{
 			tree.v = true;
 			continue;
@@ -48,8 +48,8 @@ void Main()
 
 		// Check visibility to the right
 		if (!trees.Exists(t => t.y == tree.y &&
-							   t.x > tree.x &&
-							   t.h >= tree.h))
+				       t.x > tree.x &&
+				       t.h >= tree.h))
 		{
 			tree.v = true;
 			continue;
@@ -57,8 +57,8 @@ void Main()
 
 		// Check visibility above
 		if (!trees.Exists(t => t.x == tree.x &&
-							   t.y < tree.y &&
-							   t.h >= tree.h))
+				       t.y < tree.y &&
+				       t.h >= tree.h))
 		{
 			tree.v = true;
 			continue;
@@ -66,8 +66,8 @@ void Main()
 
 		// Check visibility below
 		if (!trees.Exists(t => t.x == tree.x &&
-							   t.y > tree.y &&
-							   t.h >= tree.h))
+				       t.y > tree.y &&
+				       t.h >= tree.h))
 		{
 			tree.v = true;
 			continue;
