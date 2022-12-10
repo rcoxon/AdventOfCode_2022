@@ -1,8 +1,28 @@
-<Query Kind="Program" />
+<Query Kind="Program">
+  <Namespace>System.Threading.Tasks</Namespace>
+  <Namespace>LINQPad.Controls</Namespace>
+</Query>
 
 void Main()
 {
-	var input = File.ReadAllLines(@"c:\AdventOfCode\2022\Day09_1.txt");
+	var filePath = new FilePicker().Dump("Pick a file...");
+
+	var button = new Button("Execute").Dump();
+	button.Click += (sender, args) =>
+	{
+		if (!string.IsNullOrEmpty(filePath.Text))
+		{
+			Execute(filePath.Text);
+		}
+	};
+
+}
+
+
+// You can define other methods, fields, classes and namespaces here
+public void Execute(string filePath)
+{
+	var input = File.ReadAllLines(filePath);
 	//Console.WriteLine($"Rows: {input.Length}, Columns: {input[0].Length}");
 	// for Part 1
 	var tailPositions = new List<Position>();
@@ -37,7 +57,7 @@ void Main()
 			// for Part 1
 			MoveHead(h, motion.Direction);
 			CheckMoveTail(h, t);
-			
+
 			// Check if tail is in a new unique position
 			if (tailPositions.Where(p => p.x == t.x && p.y == t.y).Count() == 0)
 			{
@@ -46,7 +66,7 @@ void Main()
 
 			// for Part 2
 			MoveHead(knots[0], motion.Direction);
-			
+
 			// Move all the "tails"
 			for (int c = 0; c < 9; c++)
 			{
@@ -67,7 +87,6 @@ void Main()
 
 }
 
-// You can define other methods, fields, classes and namespaces here
 
 void MoveHead(Position h, string direction)
 {
@@ -81,24 +100,24 @@ void CheckMoveTail(Position h, Position t)
 {
 	// already touching
 	if (Math.Abs(h.x - t.x) < 2 && Math.Abs(h.y - t.y) < 2) return;
-	
+
 	// on the same line
 	if (h.y == t.y && h.x > t.x) { t.x += 1; return; }
 	if (h.y == t.y && h.x < t.x) { t.x -= 1; return; }
-	
+
 	// directly above or below
 	if (h.x == t.x && h.y > t.y) { t.y += 1; return; }
 	if (h.x == t.x && h.y < t.y) { t.y -= 1; return; }
-	
+
 	// one line above and to the right or two lines above and to the right
 	if (h.y > t.y && h.x > t.x) { t.y += 1; t.x += 1; return; };
-	
+
 	// one line above and to the left or two lines above and to the left
 	if (h.y > t.y && h.x < t.x) { t.y += 1; t.x -= 1; return; };
-	
+
 	// one line below and to the right or two lines above and to the right
 	if (h.y < t.y && h.x > t.x) { t.y -= 1; t.x += 1; return; };
-	
+
 	// one line below and to the left or two lines above and to the left
 	if (h.y < t.y && h.x < t.x) { t.y -= 1; t.x -= 1; return; };
 
@@ -112,13 +131,13 @@ public class Position
 
 public class Motion
 {
-	public string Direction{get;set;}
-	public int Steps{get;set;}
-	
+	public string Direction { get; set; }
+	public int Steps { get; set; }
+
 	public Motion(string line)
 	{
 		var instruction = line.Split(" ");
-		Direction=instruction[0];
+		Direction = instruction[0];
 		Steps = Convert.ToInt32(instruction[1]);
 	}
 }
