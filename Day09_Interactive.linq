@@ -27,8 +27,8 @@ public void Execute(string filePath)
 	// for Part 1
 	var tailPositions = new List<Position>();
 	tailPositions.Add(new Position { x = 0, y = 0 });
-	Position t = new Position { x = 0, y = 0 };
-	Position h = new Position { x = 0, y = 0 };
+	Position tail = new Position { x = 0, y = 0 };
+	Position head = new Position { x = 0, y = 0 };
 
 	// for Part 2
 	var tail9Positions = new List<Position>();
@@ -55,13 +55,13 @@ public void Execute(string filePath)
 		for (int i = 0; i < motion.Steps; i++)
 		{
 			// for Part 1
-			MoveHead(h, motion.Direction);
-			CheckMoveTail(h, t);
+			MoveHead(head, motion.Direction);
+			CheckMoveTail(head, tail);
 
 			// Check if tail is in a new unique position
-			if (!tailPositions.Any(p => p.x == t.x && p.y == t.y))
+			if (!tailPositions.Any(p => p.x == tail.x && p.y == tail.y))
 			{
-				tailPositions.Add(new Position { x = t.x, y = t.y });
+				tailPositions.Add(new Position { x = tail.x, y = tail.y });
 			}
 
 			// for Part 2
