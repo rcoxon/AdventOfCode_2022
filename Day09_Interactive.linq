@@ -59,7 +59,7 @@ public void Execute(string filePath)
 			CheckMoveTail(h, t);
 
 			// Check if tail is in a new unique position
-			if (tailPositions.Where(p => p.x == t.x && p.y == t.y).Count() == 0)
+			if (!tailPositions.Any(p => p.x == t.x && p.y == t.y))
 			{
 				tailPositions.Add(new Position { x = t.x, y = t.y });
 			}
@@ -74,7 +74,7 @@ public void Execute(string filePath)
 			}
 
 			// Check if tail 9 is in a new unique position
-			if (tail9Positions.Where(p => p.x == knots[9].x && p.y == knots[9].y).Count() == 0)
+			if (!tail9Positions.Any(p => p.x == knots[9].x && p.y == knots[9].y))
 			{
 				tail9Positions.Add(new Position { x = knots[9].x, y = knots[9].y });
 			}

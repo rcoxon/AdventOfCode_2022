@@ -7,8 +7,8 @@ void Main()
 	// for Part 1
 	var tailPositions = new List<Position>();
 	tailPositions.Add(new Position { x = 0, y = 0 });
-	Position t = new Position { x = 0, y = 0 };
-	Position h = new Position { x = 0, y = 0 };
+	Position tail = new Position { x = 0, y = 0 };
+	Position head = new Position { x = 0, y = 0 };
 
 	// for Part 2
 	var tail9Positions = new List<Position>();
@@ -35,13 +35,13 @@ void Main()
 		for (int i = 0; i < motion.Steps; i++)
 		{
 			// for Part 1
-			MoveHead(h, motion.Direction);
-			CheckMoveTail(h, t);
+			MoveHead(head, motion.Direction);
+			CheckMoveTail(head, tail);
 			
 			// Check if tail is in a new unique position
-			if (tailPositions.Where(p => p.x == t.x && p.y == t.y).Count() == 0)
+			if (!tailPositions.Any(p => p.x == tail.x && p.y == tail.y))
 			{
-				tailPositions.Add(new Position { x = t.x, y = t.y });
+				tailPositions.Add(new Position { x = tail.x, y = tail.y });
 			}
 
 			// for Part 2
@@ -54,7 +54,7 @@ void Main()
 			}
 
 			// Check if tail 9 is in a new unique position
-			if (tail9Positions.Where(p => p.x == knots[9].x && p.y == knots[9].y).Count() == 0)
+			if (!tail9Positions.Any(p => p.x == knots[9].x && p.y == knots[9].y))
 			{
 				tail9Positions.Add(new Position { x = knots[9].x, y = knots[9].y });
 			}
